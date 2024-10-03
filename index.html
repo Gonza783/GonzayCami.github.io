@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apuestas Deportivas</title>
+<!DOCTYPE html>
+<html lang="es">
+<<link rel="stylesheet" href="styles.css">
+>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apuestas Deportivas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Apuestas Deportivas</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">¿Qué son?</a></li>
+                <li><a href="#sports">Deportes Disponibles</a></li>
+                <li><a href="#tips">Consejos</a></li>
+                <li><a href="#messi-video">Video de Messi</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="about">
+        <h2>¿Qué son las Apuestas Deportivas?</h2>
+        <p>Las apuestas deportivas consisten en pronosticar los resultados de eventos deportivos y apostar dinero según la probabilidad de dichos resultados. Es una forma popular de entretenimiento para los aficionados al deporte que desean añadir emoción a sus eventos favoritos.</p>
+    </section>
+
+    <section id="sports">
+        <h2>Deportes Disponibles para Apuestas</h2>
+        <ul>
+            <li>Fútbol</li>
+            <li>Baloncesto</li>
+            <li>Tenis</li>
+            <li>Boxeo</li>
+            <li>Fórmula 1</li>
+        </ul>
+    </section>
+
+    <section id="tips">
+        <h2>Consejos para Apuestas</h2>
+        <ol>
+            <li>Investiga bien antes de apostar.</li>
+            <li>Gestiona tu presupuesto de manera responsable.</li>
+            <li>No apuestes bajo presión o emociones fuertes.</li>
+            <li>Aprovecha las ofertas y bonos de las casas de apuestas.</li>
+            <li>Especialízate en un deporte o liga que conozcas bien.</li>
+        </ol>
+    </section>
+
+    <section id="messi-video">
+        <h2>Video de Messi</h2>
+        <!-- Video de Messi directamente en la página web -->
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/NdbuM7-3U0o" 
+        title="Video de Messi" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </section>
+<section id="roulette-game">
+    <h2>Juego de Ruleta</h2>
+    <div id="roulette-wheel">
+        <img src="ruleta.png" alt="Rueda de Ruleta" id="wheel" width="600" height="600" />
+
+        <div id="pointer">⬆️</div>
+    </div>
+    <button onclick="spinWheel()">Girar Ruleta</button>
+    <p id="resultMessage"></p>
+    <div id="videoContainer"></div>
+</section>
+#roulette-game {
+    margin: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+#roulette-wheel {
+    position: relative;
+    display: inline-block;
+}
+
+#wheel {
+    width: 300px; /* Ajusta el tamaño según sea necesario */
+}
+
+#pointer {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px; /* Ajusta el tamaño del puntero */
+}
+
+
+<section id="dice-game">
+    <h2>Juego de Dados: Apuesta la Suma</h2>
+    <p>Apuesta si la suma de dos dados será mayor o menor que 7.</p>
+
+    <label for="betType">Elige tu apuesta:</label>
+    <select id="betType">
+        <option value="mayor">Mayor que 7</option>
+        <option value="menor">Menor que 7</option>
+    </select>
+
+    <button onclick="rollDice()">Lanzar Dados</button>
+    <p id="diceResult"></p>
+    <p id="betResult"></p>
+</section>
+
+<section id="betting-game">
+    <h2>Juego de Apuestas: Apuesta a un Número</h2>
+    <p>Adivina un número entre 1 y 10. Tienes 3 intentos para acertar. ¡Buena suerte!</p>
+    
+    <input type="number" id="userGuess" min="1" max="10" placeholder="Ingresa un número" />
+    <button onclick="playGame()">Apostar</button>
+    <p id="resultMessage"></p>
+</section>
+
+
+    <section id="contact">
+        <h2>Contacto</h2>
+        <p>Email: soporte@apuestasdeportivas.com</p>
+        <p>Teléfono: +54 11 1234-5678</p>
+        <p>Dirección: Calle Apuestas 123, Buenos Aires, Argentina</p>
+    </section>
+
+    <footer>
+        <p>Derechos reservados © 2024 Apuestas Deportivas</p>
+    </footer>
+<script>
+    let randomNumber = Math.floor(Math.random() * 10) + 1; // Número aleatorio entre 1 y 10
+    let attempts = 3;
+
+    function playGame() {
+        const userGuess = parseInt(document.getElementById('userGuess').value);
+        const resultMessage = document.getElementById('resultMessage');
+
+        if (isNaN(userGuess) || userGuess < 1 || userGuess > 10) {
+            resultMessage.textContent = "Por favor, ingresa un número válido entre 1 y 10.";
+            return;
+        }
+
+        attempts--;
+
+        if (userGuess === randomNumber) {
+            resultMessage.textContent = "¡Felicidades! Has adivinado el número correcto: " + randomNumber + ".";
+            resetGame();
+        } else if (attempts > 0) {
+            resultMessage.textContent = "Incorrecto. Te quedan " + attempts + " intentos.";
+        } else {
+            resultMessage.textContent = "Lo siento, has agotado tus intentos. El número era " + randomNumber + ".";
+            resetGame();
+        }
+    }
+
+    function resetGame() {
+        attempts = 3;
+        randomNumber = Math.floor(Math.random() * 10) + 1; // Generar un nuevo número
+        document.getElementById('userGuess').value = ''; // Limpiar el campo de entrada
+    }
+</script>
+<script>
+    function rollDice() {
+        const die1 = Math.floor(Math.random() * 6) + 1; // Lanza el primer dado
+        const die2 = Math.floor(Math.random() * 6) + 1; // Lanza el segundo dado
+        const sum = die1 + die2; // Suma de los dos dados
+        const betType = document.getElementById('betType').value; // Tipo de apuesta
+
+        document.getElementById('diceResult').textContent = "Has lanzado: " + die1 + " y " + die2 + ". Suma: " + sum + ".";
+
+        if ((betType === "mayor" && sum > 7) || (betType === "menor" && sum < 7)) {
+            document.getElementById('betResult').textContent = "¡Ganaste! Tu apuesta fue correcta.";
+        } else {
+            document.getElementById('betResult').textContent = "Perdiste. Intenta de nuevo.";
+        }
+    }
+</script>
+<script>
+    function spinWheel() {
+        const resultMessage = document.getElementById('resultMessage');
+        const videoContainer = document.getElementById('videoContainer');
+        
+        // Genera un ángulo aleatorio para girar la ruleta
+        const randomDegree = Math.floor(Math.random() * 360) + 3600; // Rueda varias veces
+        const wheel = document.getElementById('wheel');
+        
+        // Aplica la rotación a la rueda
+        wheel.style.transition = 'transform 4s ease-out';
+        wheel.style.transform = `rotate(${randomDegree}deg)`;
+        
+        // Establece el resultado después de que gire
+        setTimeout(() => {
+            const sector = randomDegree % 360; // Determina el sector
+            let result;
+
+            // Determina el resultado según el sector
+            if (sector < 60) {
+                result = "¡Ganaste en el sector rojo!";
+                // Agrega un video de un sector o tema relacionado
+                videoContainer.innerHTML = '<iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_ROJO" frameborder="0" allowfullscreen></iframe>';
+            } else if (sector < 120) {
+                result = "¡Ganaste en el sector verde!";
+                videoContainer.innerHTML = '<iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_VERDE" frameborder="0" allowfullscreen></iframe>';
+            } else {
+                result = "¡Ganaste en el sector negro!";
+                videoContainer.innerHTML = '<iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_NEGRO" frameborder="0" allowfullscreen></iframe>';
+            }
+
+            resultMessage.textContent = result;
+        }, 4000); // Tiempo de espera igual al tiempo de giro
+    }
+</script>
+    
+</script>
+
+
+</body>
+</html>
